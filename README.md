@@ -26,3 +26,7 @@ operators, which determine what printf does with its arguments:
 %s    a string of characters
 
 %% 		a '%' sign
+
+**FLOWCHART**
+
+![Printf Diagram drawio](https://user-images.githubusercontent.com/90810410/160452342-1b4282cf-f7c7-49e7-a0ce-7df50d601299.png)
