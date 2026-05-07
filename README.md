@@ -1,32 +1,75 @@
-## Formatted Printing Function
+# _printf
 
-### Header file
-#### int printf(const char *format, ...)
-The printf() function prints output to STDOUT, according to format and
-other arguments passed to printf(). The string format consists of two
-types of items - characters that will be printed to the screen, and
-format commands that define how the other arguments to printf() are
-displayed. Basically, you specify a format string that has text in it,
-as well as "special" characters that map to the other arguments of
-printf(). For example, this code
-- Formats and prints its arguments as specified by the format string.
-- Plain characters in format are simply copied.
-- Format specifications are made up of a the percent sign (%) followed by one of the following conversion
-operators, which determine what printf does with its arguments:
-% - print a single % character
+A custom implementation of the C standard library `printf` function, written from scratch in C as part of the Holberton School low-level programming curriculum. Supports a subset of the conversion specifiers and follows the prototype:
 
-**Code**	**Format**
+```c
+int _printf(const char *format, ...);
+```
 
-%c    character
+## Supported Conversion Specifiers
 
-%d    signed integers
+| Specifier | Description |
+|-----------|-------------|
+| `%c` | Single character |
+| `%s` | Null-terminated string |
+| `%d` | Signed decimal integer |
+| `%i` | Signed decimal integer |
+| `%%` | Literal `%` character |
 
-%i    signed integers
+Plain characters in the format string are copied verbatim. Unknown specifiers are printed as-is (`%` followed by the character).
 
-%s    a string of characters
+The function returns the number of characters written, or `-1` if `format` is `NULL`.
 
-%% 		a '%' sign
+## Flowchart
 
-**FLOWCHART**
+![_printf flowchart](https://user-images.githubusercontent.com/90810410/160452342-1b4282cf-f7c7-49e7-a0ce-7df50d601299.png)
 
-![Printf Diagram drawio](https://user-images.githubusercontent.com/90810410/160452342-1b4282cf-f7c7-49e7-a0ce-7df50d601299.png)
+## Project Structure
+
+```
+printf/
+├── _printf.c        # Main dispatcher: walks the format string
+├── _putchar.c       # Low-level write helper (write(1, &c, 1))
+├── print_char.c     # Handles %c
+├── print_string.c   # Handles %s
+├── print_int.c      # Handles %d and %i
+├── main.h           # Public prototypes and includes
+├── man_3_printf     # Man page for _printf
+└── README.md
+```
+
+## Build & Use
+
+Compile with the Holberton standard flags:
+
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o printf
+```
+
+Use it from your own program by including the header and linking the sources:
+
+```c
+#include "main.h"
+
+int main(void)
+{
+    _printf("Hello, %s! You are %d years old.\n", "world", 21);
+    return (0);
+}
+```
+
+## Man Page
+
+A man page is included in the repository. To view it locally:
+
+```bash
+man ./man_3_printf
+```
+
+## Author
+
+- **Mateo Villada** — [@TeoVH](https://github.com/TeoVH)
+
+## Acknowledgments
+
+Project completed as part of the [Holberton School](https://www.holbertonschool.com/) low-level programming curriculum.
